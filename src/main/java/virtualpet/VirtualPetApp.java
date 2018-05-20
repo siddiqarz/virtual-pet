@@ -21,10 +21,26 @@ public class VirtualPetApp {
 		int boredom = rand.nextInt(10) +1;
 		int age = 0;
 		int health = 10;
-		dragon.petStats(hunger, sleepiness, boredom, age, health);
-		//tick starts here?
-		dragon.action();
 		
+		//tick starts here?
+		dragon.petStats(hunger, sleepiness, boredom, age, health);
+		dragon.action();
+		int newAction = input.nextInt();
+		int foodValue;
+		if (newAction == 1) {
+			dragon.hunger(newAction);
+			int foodType = input.nextInt();
+			switch (foodType) {
+			case 1: foodValue = -1;
+			case 2: foodValue = 5;
+			case 3: foodValue = -5;
+			case 4: foodValue = 3;
+			case 5: foodValue = 1;
+			default: foodValue = 0;
+			}
+			dragon.feed(foodValue);
+			dragon.petStats(hunger, sleepiness, boredom, age, health);
+		}
 	}
 
 }
