@@ -1,4 +1,5 @@
 **Virtual Pet Project**
+
 	*Has a VirtualPet class
 	*VirtualPetApp class with main method
 	*Has a tick() method to represent passage of time. This would update instance variables of hunger, thirst and naptime. 
