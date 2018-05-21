@@ -11,8 +11,8 @@ public class VirtualPetApp {
 		// ask user to name their pet
 		System.out.println("Choose a name for your Dragon: ");
 		// Store pet name
+		
 		String petName = input.nextLine();
-
 		// create random numbers to assign to initialize pet stats
 		Random rand = new Random();
 		int hunger = rand.nextInt(5) + 1;
@@ -24,9 +24,8 @@ public class VirtualPetApp {
 		//call out initial stats
 		VirtualPet dragon = new VirtualPet(petName, hunger, sleepiness, boredom, age, health);
 		
-		
 		//loops while pet is alive
-		while (hunger != 10 && health != 0) {
+		while (dragon.notDead()) {
 			dragon.action();
 			int newAction = input.nextInt();
 			int nutritionValue;
@@ -57,7 +56,7 @@ public class VirtualPetApp {
 			}
 			if(newAction == 4) {
 				if(dragon.getHunger()>5) {
-			System.out.println("I'm hungry");
+			System.out.println("I'm hungry!");
 				}
 				else if (dragon.getBoredom()>5) {
 					System.out.println("So boooring, my buddy!");
@@ -74,6 +73,7 @@ public class VirtualPetApp {
 		}
 		
 		}
+		System.out.println("You murderer! R.I.P " + petName);
 	}
 
 }

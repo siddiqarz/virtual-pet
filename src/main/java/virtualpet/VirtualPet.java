@@ -58,6 +58,10 @@ public class VirtualPet {
 
 	public int tick() {
 			hunger = hunger +2;
+			if (hunger>8&& hunger<10) {
+				System.out.println("I'm going to go eat a bird or something.");
+				hunger = hunger +1;
+			}
 			boredom = boredom +1;
 			sleepiness = sleepiness + 1;
 			return hunger;
@@ -78,6 +82,13 @@ public class VirtualPet {
 
 	public int getHealth() {
 		return health;
+	}
+
+	public boolean notDead() {
+		if(hunger>10) {
+		return false;
+		}
+		return true;
 	}
 
 }
