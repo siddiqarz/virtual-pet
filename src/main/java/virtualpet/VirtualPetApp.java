@@ -34,7 +34,7 @@ public class VirtualPetApp {
 					+ dragon.getAge() + "\nHealth " + dragon.getHealth());
 
 			System.out.println("What do you want to do?\n1. Feed " + petName + "\n2. Sing " + petName
-					+ " a lullaby\n3. Play with " + petName + "\n4. Do nothing");
+					+ " a lullaby\n3. Play with " + petName + "\n4. Take " + petName + " to vet\n5. Do nothing");
 
 			int newAction = input.nextInt();
 			int nutritionValue;
@@ -73,10 +73,10 @@ public class VirtualPetApp {
 					System.out.println("Disgusting!!!");
 				} else if (nutritionValue == -5) {
 					System.out.println("Yumm!!!");
-					age = age + 1;
+				
 				} else if (nutritionValue == 0) {
 					System.out.println("Sigh, this is junk.");
-					health = health - 1;
+					
 
 				} else
 					System.out.println("Thanks for the meal I guess");
@@ -89,25 +89,13 @@ public class VirtualPetApp {
 					System.out.println("My hunger level is now: " + dragon.getHunger());
 					System.out.println("Please don't feed me anymore.");
 					System.out.println("What do you want to do?\n1. Feed " + petName + "\n2. Sing " + petName
-							+ " a lullaby\n3. Play with " + petName + "\n4. Do nothing");
+							+ " a lullaby\n3. Play with " + petName + "\n4. Take " + petName + " to vet\n5. Do nothing");
 
 					newAction = input.nextInt();
 				}
 
 			}
-			if (newAction == 4) {
-				if (dragon.getHunger() >= 7) {
-					System.out.println("I'm hungry!");
-				} else if (dragon.getBoredom() > 5) {
-					System.out.println("So boooring, my buddy!");
-				} else if (dragon.getSleepiness() > 8) {
-					System.out.println("*Yawn!*, I can't keep my eyes open.");
-				} else
-					System.out.println(petName + " *Takes off and burns everything to a crisp*");
-			}
-			if (newAction == 2) {
-				dragon.singToSleep();
-			}
+			
 			if (newAction == 3) {
 				System.out.println("What game do you want to play?\n1. Rock, Paper, Scissors \n2. Battle another Pet");
 				int gamePick = input.nextInt();
@@ -118,11 +106,12 @@ public class VirtualPetApp {
 					while (i < 3) {
 						System.out.println("Let's play a game of 3. Choose your weapon:\n1. Rock\n2. Paper\n3. Scissors");
 						choice = input.nextInt();
-						petChoice = rand.nextInt(3) + 1;
-						
+						petChoice = rand.nextInt(3) + 0;
+						System.out.println("rand number" + petChoice);
 						while (choice > 3 || choice < 1) {
 							System.out.println("You need to choose between 1 and 3");
 							System.out.println("1. Rock\n2. Paper\n3. Scissors");
+							choice = input.nextInt();
 						}
 						
 						dragon.playGame1(choice, petChoice);
@@ -141,6 +130,23 @@ public class VirtualPetApp {
 					System.out.println("Ok, let's battle then!");
 					// dragon.playGame2();
 				}
+			}
+			if(newAction == 4) {
+				System.out.println("Pick your poison: ");
+			}
+			if (newAction == 5) {
+				dragon.doNothing();
+				if (dragon.getHunger() >= 7) {
+					System.out.println("I'm hungry!");
+				} else if (dragon.getBoredom() > 5) {
+					System.out.println("So boooring, my buddy!");
+				} else if (dragon.getSleepiness() > 8) {
+					System.out.println("*Yawn!*, I can't keep my eyes open.");
+				} else
+					System.out.println(petName + " *Takes off and burns everything to a crisp*");
+			}
+			if (newAction == 2) {
+				dragon.singToSleep();
 			}
 		
 			dragon.tick();
