@@ -45,9 +45,9 @@ public class VirtualPet {
 		return sleepiness;
 	}
 
-	public void playGame1(int choice, int petChoice) {
+	public int playGame1(int choice, int petChoice) {
 		// Rock Paper Scissors
-
+gameScore = 0;
 		if (choice == petChoice) {
 
 		}
@@ -78,10 +78,10 @@ public class VirtualPet {
 				gameScore++;
 			}
 		}
-
+return gameScore;
 	}
 
-	public int getScore() {
+	public int getScore(int score) {
 		if (gameScore == 2) {
 			health = health - 1;
 			sleepiness = sleepiness + 2;
@@ -124,6 +124,9 @@ public class VirtualPet {
 		if (health > 10) {
 			health = 10;
 		}
+		if (health <0) {
+			health = 0;
+		}
 		if (hunger == 10) {
 			health = health - 2;
 		}
@@ -131,7 +134,7 @@ public class VirtualPet {
 	}
 
 	public boolean notDead() {
-		if (hunger == 10 && health <= 2) {
+		if (hunger >= 10 && health <= 2) {
 			return false;
 		}
 		return true;
@@ -165,5 +168,10 @@ public class VirtualPet {
 		sleepiness = sleepiness + 1;
 		age = age + 1;
 
+	}
+
+	public void goesToNap() {
+boredom = boredom -2;
+sleepiness = sleepiness -1;
 	}
 }

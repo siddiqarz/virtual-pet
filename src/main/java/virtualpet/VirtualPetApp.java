@@ -34,13 +34,13 @@ public class VirtualPetApp {
 					+ dragon.getBoredom() + "\nAge " + dragon.getAge() + "\nHealth " + dragon.getHealth());
 
 			System.out.println("What do you want to do?\n1. Feed " + petName + "\n2. Sing " + petName
-					+ " a lullaby\n3. Play with " + petName + "\n4. Take " + petName + " to vet\n5. Do nothing");
+					+ " a lullaby\n3. Play with " + petName + "\n4. Take " + petName + " to vet\n5. Do nothing\n6. Quit Game");
 			int newAction = input.nextInt();
 
-			while (newAction < 1 || newAction > 5) {
+			while (newAction < 1 || newAction > 6) {
 				System.out.println("Please choose from the following numbers: ");
 				System.out.println("What do you want to do?\n1. Feed " + petName + "\n2. Sing " + petName
-						+ " a lullaby\n3. Play with " + petName + "\n4. Take " + petName + " to vet\n5. Do nothing");
+						+ " a lullaby\n3. Play with " + petName + "\n4. Take " + petName + " to vet\n5. Do nothing\n6. Quit Game");
 				newAction = input.nextInt();
 			}
 
@@ -112,13 +112,14 @@ public class VirtualPetApp {
 			}
 
 			if (newAction == 3) {
-				System.out.println("What game do you want to play?\n1. Rock, Paper, Scissors \n2. Battle another Pet");
-				int gamePick = input.nextInt();
-				if (gamePick == 1) {
+				System.out.println("Let's play Rock, Paper, Scissors!");
+				
+				
 					int i = 0;
+					int score = 0;
 					int choice;
 					int petChoice;
-					System.out.println("Let's play a game of 3!");
+					System.out.println("We'll play a game of 3.");
 					while (i < 3) {
 
 						System.out.println("Choose your weapon:\n1. Rock\n2. Paper\n3. Scissors");
@@ -133,20 +134,17 @@ public class VirtualPetApp {
 							choice = input.nextInt();
 						}
 
-						dragon.playGame1(choice, petChoice);
+					score=dragon.playGame1(choice, petChoice)+score;
 						i++;
+					
 					}
-
-					System.out.println("Your score out of 3 is " + dragon.getScore());
-					if (dragon.getScore() < 2) {
+					System.out.println("Your score out of 3 is " + dragon.getScore(score));
+					if (dragon.getScore(score) < 2) {
 						System.out.println("Rawhaha!!! I win!");
 					} else {
 						System.out.println("I hate this game!");
 					}
-				} else {
-					System.out.println("Ok, let's battle then!");
-					// dragon.playGame2();
-				}
+				 
 			}
 			if (newAction == 4) {
 				System.out.println("Pick your poison:\n1. Injection\n2. Pills\n3. No medication");
@@ -169,22 +167,24 @@ public class VirtualPetApp {
 			}
 			if (newAction == 5) {
 				dragon.doNothing();
-		if (dragon.getBoredom() == 10) {
-					System.out.println("So boooring, I'm going to take a nap");
-				} else if (dragon.getSleepiness() > 8 && dragon.getHunger() <8) {
+				if (dragon.getHunger()>8&& dragon.getHunger()<10) {
+					System.out.println("I'm hungry!!!");
+				}
+		else if (dragon.getHunger()<=8) {
+					if (dragon.getSleepiness() > 8) {
 					System.out.println("*Yawn!*, I can't keep my eyes open.");
-				} else
-					System.out.println(petName + "*Takes off and burns everything to a crisp*");
+					dragon.goesToNap();
+				}
+					else if (dragon.getBoredom() > 8) {
+						System.out.println("So boooring, I'm going to take a nap");
+						dragon.goesToNap();
+					} 
+					else
+					System.out.println(petName + " *Takes off and burns everything to a crisp*");
 			}
-
+			}
 	
-			if (dragon.getHunger() == 8) {
-				System.out.println("I'm hungry! I'll go roast a bird.");
-				dragon.feed(-1);
-			}
-			if (dragon.getBoredom()>7) {
-				System.out.println("Why don't you play with me?");
-			}
+
 			if (dragon.getHealth() > 2 && dragon.getHealth() < 5 && dragon.getSleepiness() > 5) {
 				System.out.println("*Coughs sparks* I feel hot.");
 				if (dragon.getHunger() > 6) {
@@ -194,11 +194,15 @@ public class VirtualPetApp {
 					System.out.println("I think I need to rest.");
 				}
 			}
-			dragon.getHunger(); 
-			dragon.getHealth();
+			if(newAction ==6) {
+				System.out.println("Bye friend!");
+				System.exit(0);
+			}
 			dragon.tick();
 		}
+		
 		System.out.println("You murderer! R.I.P " + petName);
+		input.close();
 	}
 
 }
